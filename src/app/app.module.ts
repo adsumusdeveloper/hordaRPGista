@@ -9,20 +9,28 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { WelcomePageModule } from '../pages/welcome/welcome.module';
-import { ListafichasPage } from '../pages/listafichas/listafichas';
 import { ListafichasPageModule } from '../pages/listafichas/listafichas.module';
-import { DetalhesSistema1Page } from '../pages/detalhes-sistema1/detalhes-sistema1';
-import { DetalhesSistema2Page } from '../pages/detalhes-sistema2/detalhes-sistema2';
 import { DetalhesSistema1PageModule } from '../pages/detalhes-sistema1/detalhes-sistema1.module';
 import { DetalhesSistema2PageModule } from '../pages/detalhes-sistema2/detalhes-sistema2.module';
 import { FichaSistema1PageModule } from '../pages/ficha-sistema1/ficha-sistema1.module';
 import { FichaSistema2PageModule } from '../pages/ficha-sistema2/ficha-sistema2.module';
 import { FichaProvider } from '../providers/ficha/ficha';
+import { ResetpasswordPageModule } from '../pages/resetpassword/resetpassword.module';
+import { SigninPageModule } from '../pages/signin/signin.module';
+import { SigninwithemailPageModule } from '../pages/signinwithemail/signinwithemail.module';
+import { SignupPageModule } from '../pages/signup/signup.module';
+import { AuthService } from '../providers/auth/auth-service';
+
+import { GooglePlus } from '@ionic-native/google-plus';
+import { Facebook } from '@ionic-native/facebook';
+import { TwitterConnect } from '@ionic-native/twitter-connect';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +49,11 @@ import { FichaProvider } from '../providers/ficha/ficha';
     DetalhesSistema2PageModule,
     FichaSistema1PageModule,
     FichaSistema2PageModule,
+    ResetpasswordPageModule,
+    SigninPageModule,
+    SigninwithemailPageModule,
+    SignupPageModule,
+    AngularFireAuthModule,
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyAo4iMdJz6HXrgmg-C2px9E86WMu25qP-0",
       authDomain: "quem-me-deve.firebaseapp.com",
@@ -50,6 +63,7 @@ import { FichaProvider } from '../providers/ficha/ficha';
       messagingSenderId: "370286620388"
     }),
     AngularFireDatabaseModule
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -63,7 +77,11 @@ import { FichaProvider } from '../providers/ficha/ficha';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FichaProvider
+    FichaProvider,
+    AuthService,
+    GooglePlus,
+    Facebook,
+    TwitterConnect
   ]
 })
 export class AppModule {}

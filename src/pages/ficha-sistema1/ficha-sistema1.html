@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      Contatos
+      Fichas do Sistema
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,16 +9,30 @@
 <ion-content padding>
  
   <ion-list>
-    <ion-item-sliding *ngFor="let contact of contacts | async">
-      <ion-item>
-        <h1>{{ contact.name }}</h1>
-        <p>{{ contact.tel }}</p>
+    <ion-item-sliding *ngFor="let ficha of fichas | async">
+      <ion-item (click)="itemClick(ficha)">
+        <h1 style="font-weight: bold; font-size: 20px; color: black;">{{ ficha.name }}</h1>      
+        <p> Ancestralidade: {{ficha.ancestralidade }}</p>
+        <p> Trilha Aprendiz: {{ficha.trilha_aprendiz }}</p>
+        <p> Trilha Especialista: {{ficha.trilha_especialista }}</p>
+        <p> Tilha Mestre: {{ficha.trilha_mestre }}</p>
+        <p> Insanidade: {{ficha.insanidade }}</p>
+        <p> Corrupção: {{ficha.corrupcao }}</p>
+        <p> Poder: {{ ficha.poder }}</p>
+        <p> Nivel: {{ ficha.nivel }}</p>
+        <p> Forca: {{ ficha.forca }}</p>
+        <p> Intelecto: {{ ficha.intelecto }}</p>
+        <p> Agilidade: {{ ficha.agilidade }}</p>
+        <p> Vontade: {{ ficha.vontade }}</p>
+        <p> Percepção: {{ ficha.percepcao }}</p>
+        <p> Modificador: {{ ficha.modificador }}</p>  
       </ion-item>
-      <ion-item-options side="left">
-        <button ion-button color="secondary" (click)="editContact(contact)">
+
+      <ion-item-options side="right">
+        <button ion-button color="secondary" (click)="editFicha(ficha)">
           <ion-icon name="create"></ion-icon>
         </button>
-        <button ion-button color="danger" (click)="removeContact(contact.key)">
+        <button ion-button color="danger" (click)="removeFicha(ficha.key)">
           <ion-icon name="trash"></ion-icon>
         </button>
       </ion-item-options>
@@ -26,8 +40,14 @@
   </ion-list>
  
   <ion-fab bottom right>
-    <button ion-fab color="primary" (click)="newContact()">
+    <button ion-fab color="primary" (click)="newFicha()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
+<!--
+  <ion-card>
+
+    <button ion-button block (click)="abrirDetalhes1()">Detalhes do Sistema</button>
+  </ion-card>
+-->
 </ion-content>
