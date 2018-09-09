@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FichaProvider } from './../../providers/ficha/ficha';
 import { Observable } from 'rxjs/Observable';
 
 @IonicPage()
@@ -10,8 +9,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ListafichasPage {
   contacts: Observable<any>;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private provider: FichaProvider) {
-    console.log(this.contacts = this.provider.getAll());
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {

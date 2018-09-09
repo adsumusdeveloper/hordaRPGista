@@ -15,8 +15,24 @@
 
 <ion-content padding>
     <ion-list>
-        <ion-item-sliding *ngFor="let ficha of ficha | async">
-
+        <ion-item-sliding *ngIf="ficha">
+            <ion-item>
+              <p> Nome: {{ ficha.name }}</p>
+              <p> Ancestralidade: {{ficha.ancestralidade }}</p>
+              <p> Trilha Aprendiz: {{ficha.trilha_aprendiz }}</p>
+              <p> Trilha Especialista: {{ficha.trilha_especialista }}</p>
+              <p> Tilha Mestre: {{ficha.trilha_mestre }}</p>
+              <p> Insanidade: {{ficha.insanidade }}</p>
+              <p> Corrupção: {{ficha.corrupcao }}</p>
+              <p> Poder: {{ ficha.poder }}</p>
+              <p> Nivel: {{ ficha.nivel }}</p>
+              <p> Forca: {{ ficha.forca }}</p>
+              <p> Intelecto: {{ ficha.intelecto }}</p>
+              <p> Agilidade: {{ ficha.agilidade }}</p>
+              <p> Vontade: {{ ficha.vontade }}</p>
+              <p> Percepção: {{ ficha.percepcao }}</p>
+              <p> Modificador: {{ ficha.modificador }}</p>  
+          </ion-item>
         </ion-item-sliding>
   </ion-list>
 </ion-content>

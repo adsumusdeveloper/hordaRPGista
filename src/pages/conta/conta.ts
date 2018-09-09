@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the FichaPage page.
+ * Generated class for the ContaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,17 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-ficha',
-  templateUrl: 'ficha.html',
+  selector: 'page-conta',
+  templateUrl: 'conta.html',
 })
-export class FichaPage {
-  ficha: any;
+export class ContaPage {
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.ficha = navParams.get('ficha');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FichaPage');
+    console.log('ionViewDidLoad ContaPage');
   }
 
 }
