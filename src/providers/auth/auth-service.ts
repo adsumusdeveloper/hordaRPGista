@@ -9,7 +9,9 @@ import { TwitterConnect } from '@ionic-native/twitter-connect';
 @Injectable()
 export class AuthService {
 
-  constructor(private angularFireAuth: AngularFireAuth, private googlePlus: GooglePlus, private facebook: Facebook, private twitter: TwitterConnect) { }
+  constructor(private angularFireAuth: AngularFireAuth, private googlePlus: GooglePlus, private facebook: Facebook, private twitter: TwitterConnect) { 
+    
+  }
 
   createUser(user: User) {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
@@ -27,7 +29,7 @@ export class AuthService {
       .then(res => {
         return this.angularFireAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
           .then((user: firebase.User) => {
-            // atualizando o profile do usuario
+           // atualizando o profile do usuario
             return user.updateProfile({ displayName: res.displayName, photoURL: res.imageUrl });
           });
       });
@@ -36,8 +38,8 @@ export class AuthService {
   signInWithFacebook() {
     return this.facebook.login(['public_profile', 'email'])
       .then((res: FacebookLoginResponse) => {
-        //https://developers.facebook.com/docs/graph-api/reference/user
-        //Ao logar com o facebook o profile do usuario é automaticamente atualizado.
+      // https://developers.facebook.com/docs/graph-api/reference/user
+      // Ao logar com o facebook o profile do usuario é automaticamente atualizado.
         return this.angularFireAuth.auth.signInWithCredential(firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken));
       });
   }
@@ -48,40 +50,40 @@ export class AuthService {
         return this.angularFireAuth.auth.signInWithCredential(firebase.auth.TwitterAuthProvider.credential(res.token, res.secret));
       });
   }
+ 
+  signOut() : Promise<any> {
+    if (this.angularFireAuth.auth.currentUser.providerData.length) {
+      for (var i = 0; i < this.angularFireAuth.auth.currentUser.providerData.length; i++) {
+        var provider = this.angularFireAuth.auth.currentUser.providerData[i];
 
-  //signOut() : firebase.Promisse<any> {
-  //  if (this.angularFireAuth.auth.currentUser.providerData.length) {
-  //    for (var i = 0; i < this.angularFireAuth.auth.currentUser.providerData.length; i++) {
-  //      var provider = this.angularFireAuth.auth.currentUser.providerData[i];
-  //
-  //      if (provider.providerId == firebase.auth.GoogleAuthProvider.PROVIDER_ID) { // Se for o gooogle
-  //       // o disconnect limpa o oAuth token e tambem esquece qual conta foi selecionada para o login
-  //        return this.googlePlus.disconnect()
-   //         .then(() => {
-   //           return this.signOutFirebase();
-   //         });
-    //    } else if (provider.providerId == firebase.auth.FacebookAuthProvider.PROVIDER_ID) { // Se for facebook
-    //      return this.facebook.logout()
-     //       .then(() => {
-     //         return this.signOutFirebase();
-      //      })
-     //   } else if (provider.providerId == firebase.auth.TwitterAuthProvider.PROVIDER_ID) { // Se for twitter
-     //     return this.twitter.logout()
-     //       .then(() => {
-      //        return this.signOutFirebase();
-     //       })
-    //    }
-   //    }
-   // }
-//
- //   return this.signOutFirebase();
- // }
+        if (provider.providerId == firebase.auth.GoogleAuthProvider.PROVIDER_ID) { // Se for o gooogle
+        //o disconnect limpa o oAuth token e tambem esquece qual conta foi selecionada para o login
+          return this.googlePlus.disconnect()
+            .then(() => {
+              return this.signOutFirebase();
+            });
+        } else if (provider.providerId == firebase.auth.FacebookAuthProvider.PROVIDER_ID) { // Se for facebook
+          return this.facebook.logout()
+            .then(() => {
+              return this.signOutFirebase();
+            })
+        } else if (provider.providerId == firebase.auth.TwitterAuthProvider.PROVIDER_ID) { // Se for twitter
+          return this.twitter.logout()
+            .then(() => {
+              return this.signOutFirebase();
+            })
+        }
+    }
+  }
 
-private signOutFirebase() {
-   return this.angularFireAuth.auth.signOut();
-}
+   return this.signOutFirebase();
+  }
 
-resetPassword(email: string) {
-  return this.angularFireAuth.auth.sendPasswordResetEmail(email);
-}
+  private signOutFirebase() {
+    return this.angularFireAuth.auth.signOut();
+  }
+
+  resetPassword(email: string) {
+    return this.angularFireAuth.auth.sendPasswordResetEmail(email);
+  }
 }

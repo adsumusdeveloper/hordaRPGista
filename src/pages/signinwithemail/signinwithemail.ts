@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { User } from '../../providers/auth/user';
 import { AuthService } from '../../providers/auth/auth-service';
 import { ResetpasswordPage } from '../resetpassword/resetpassword';
-import { WelcomePage } from '../welcome/welcome';
 import { HomePage } from '../home/home';
 
 @IonicPage()

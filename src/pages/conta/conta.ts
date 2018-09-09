@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ContaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { SigninPage } from '../signin/signin';
+import { AuthService } from '../../providers/auth/auth-service';
 
 @IonicPage()
 @Component({
@@ -14,12 +9,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'conta.html',
 })
 export class ContaPage {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) {
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public signOut() {
+    this.authService.signOut()
+      .then(() => {
+        this.navCtrl.parent.parent.setRoot(SigninPage);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContaPage');
   }
-
+  
 }
