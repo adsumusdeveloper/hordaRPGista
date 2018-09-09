@@ -30,6 +30,7 @@ import { AuthService } from '../providers/auth/auth-service';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Facebook } from '@ionic-native/facebook';
 import { TwitterConnect } from '@ionic-native/twitter-connect';
+import { ContaPage } from '../pages/conta/conta';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { TwitterConnect } from '@ionic-native/twitter-connect';
     ContactPage,
     HomePage,
     TabsPage,
+    ContaPage
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,8 @@ import { TwitterConnect } from '@ionic-native/twitter-connect';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ContaPage
   ],
   providers: [
     StatusBar,
